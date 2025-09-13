@@ -8,44 +8,47 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Historical color palette */
-    --background: 220 15% 5%;
-    --foreground: 35 25% 92%;
+    /* Professional academic color palette */
+    --background: 12 10% 4%;
+    --foreground: 45 15% 95%;
 
-    --card: 220 12% 8%;
-    --card-foreground: 35 25% 92%;
+    --card: 15 12% 8%;
+    --card-foreground: 45 15% 95%;
 
-    --popover: 220 12% 8%;
-    --popover-foreground: 35 25% 92%;
+    --popover: 15 12% 8%;
+    --popover-foreground: 45 15% 95%;
 
-    --primary: 43 96% 56%;
-    --primary-foreground: 220 15% 5%;
+    --primary: 39 85% 65%;
+    --primary-foreground: 12 10% 4%;
 
-    --secondary: 215 25% 15%;
-    --secondary-foreground: 35 25% 92%;
+    --secondary: 20 20% 12%;
+    --secondary-foreground: 45 15% 95%;
 
-    --muted: 215 20% 12%;
-    --muted-foreground: 35 10% 65%;
+    --muted: 18 15% 10%;
+    --muted-foreground: 45 8% 70%;
 
-    --accent: 43 96% 56%;
-    --accent-foreground: 220 15% 5%;
+    --accent: 39 85% 65%;
+    --accent-foreground: 12 10% 4%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 35 25% 92%;
+    --destructive: 0 75% 60%;
+    --destructive-foreground: 45 15% 95%;
 
-    --border: 215 20% 20%;
-    --input: 215 20% 12%;
-    --ring: 43 96% 56%;
+    --border: 20 15% 18%;
+    --input: 18 15% 10%;
+    --ring: 39 85% 65%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
-    /* Custom design tokens */
-    --gradient-hero: linear-gradient(135deg, hsl(43 96% 56% / 0.1), hsl(215 25% 15% / 0.8));
-    --gradient-card: linear-gradient(145deg, hsl(220 12% 8%), hsl(215 20% 12%));
-    --shadow-glow: 0 0 40px hsl(43 96% 56% / 0.15);
-    --shadow-card: 0 20px 40px hsl(220 15% 5% / 0.4);
-    --animation-float: float 6s ease-in-out infinite;
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Professional design tokens */
+    --gradient-hero: linear-gradient(135deg, hsl(12 10% 4%) 0%, hsl(39 85% 65% / 0.05) 25%, hsl(20 20% 12%) 50%, hsl(39 85% 65% / 0.08) 75%, hsl(12 10% 4%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(15 12% 8% / 0.95), hsl(18 15% 10% / 0.9));
+    --gradient-academic: linear-gradient(120deg, hsl(39 85% 65% / 0.1), hsl(45 70% 55% / 0.05));
+    --shadow-professional: 0 25px 50px hsl(12 10% 4% / 0.5), 0 0 60px hsl(39 85% 65% / 0.1);
+    --shadow-card: 0 15px 35px hsl(12 10% 4% / 0.4), inset 0 1px 0 hsl(45 15% 95% / 0.05);
+    --shadow-glow: 0 0 50px hsl(39 85% 65% / 0.2);
+    --animation-float: float 8s ease-in-out infinite;
+    --animation-pulse: pulse-glow 3s ease-in-out infinite;
+    --transition-professional: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 
     --sidebar-background: 0 0% 98%;
 
@@ -122,24 +125,63 @@ All colors MUST be HSL.
     background: var(--gradient-card);
   }
   
-  .shadow-glow {
-    box-shadow: var(--shadow-glow);
+  .gradient-academic {
+    background: var(--gradient-academic);
+  }
+  
+  .shadow-professional {
+    box-shadow: var(--shadow-professional);
   }
   
   .shadow-card {
     box-shadow: var(--shadow-card);
   }
   
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  
   .animate-float {
     animation: var(--animation-float);
   }
   
-  .transition-smooth {
-    transition: var(--transition-smooth);
+  .animate-pulse-glow {
+    animation: var(--animation-pulse);
+  }
+  
+  .transition-professional {
+    transition: var(--transition-professional);
+  }
+  
+  .glass-effect {
+    backdrop-filter: blur(20px);
+    background: hsl(var(--card) / 0.8);
+    border: 1px solid hsl(var(--border) / 0.5);
   }
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-15px) rotate(1deg); }
+  66% { transform: translateY(-8px) rotate(-1deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px hsl(var(--primary) / 0.3); }
+  50% { box-shadow: 0 0 40px hsl(var(--primary) / 0.6), 0 0 60px hsl(var(--primary) / 0.3); }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out forwards;
 }

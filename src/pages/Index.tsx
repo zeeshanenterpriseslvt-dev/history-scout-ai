@@ -1,7 +1,7 @@
 import { Navigation } from "@/components/Navigation";
 import { HeroSection } from "@/components/HeroSection";
 import { BlogSection } from "@/components/BlogSection";
-import { AISearchTool } from "@/components/AISearchTool";
+import { AIResearchSuite } from "@/components/AIResearchSuite";
 
 const Index = () => {
   return (
@@ -9,7 +9,7 @@ const Index = () => {
       <Navigation />
       <HeroSection />
       <BlogSection />
-      <AISearchTool />
+      <AIResearchSuite />
       
       <footer className="py-12 px-6 border-t border-border/50">
         <div className="container mx-auto text-center">
