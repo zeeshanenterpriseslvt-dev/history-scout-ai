@@ -25,7 +25,7 @@ jobs:
       - name: Prepare WordPress theme folder
         run: |
           mkdir -p history-scout-wp/dist
-          cp -r dist/* history-scout-wp/dist/
+          cp -r dist/* history-scout-wp/dist/ || true
           cat > history-scout-wp/style.css <<'EOF'
           /*
           Theme Name: History Scout WP
@@ -60,13 +60,12 @@ jobs:
           <?php get_footer(); ?>
           EOF
 
-      - name: Zip WP theme (fixed structure)
+      - name: Zip WP theme (correct root)
         run: |
-          mkdir -p build-theme
-          cp -r history-scout-wp build-theme/
-          cd build-theme
-          zip -r ../history-scout-wp.zip history-scout-wp
-          cd ..
+          rm -f history-scout-wp.zip
+          zip -r history-scout-wp.zip history-scout-wp
+          echo "---- ZIP CONTENTS ----"
+          unzip -l history-scout-wp.zip | grep style.css || true
 
       - name: Upload theme artifact
         uses: actions/upload-artifact@v4
@@ -180,11 +179,10 @@ jobs:
 
       - name: Zip WP plugin
         run: |
-          mkdir -p build-plugin
-          cp -r ai-research-suite-admin build-plugin/
-          cd build-plugin
-          zip -r ../ai-research-suite-admin.zip ai-research-suite-admin
-          cd ..
+          rm -f ai-research-suite-admin.zip
+          zip -r ai-research-suite-admin.zip ai-research-suite-admin
+          echo "---- ZIP CONTENTS ----"
+          unzip -l ai-research-suite-admin.zip | grep ai-research-suite-admin.php || true
 
       - name: Upload plugin artifact
         uses: actions/upload-artifact@v4
